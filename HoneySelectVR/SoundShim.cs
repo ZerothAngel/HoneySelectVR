@@ -1,4 +1,5 @@
-﻿using Harmony;
+﻿using VRGIN.Core;
+using Harmony;
 using System.Reflection;
 
 namespace HoneySelectVR
@@ -17,7 +18,11 @@ namespace HoneySelectVR
         {
             public static void Prefix(ref bool force2D)
             {
-                force2D = false;
+                var impersonating = !VR.Interpreter.IsEveryoneHeaded;
+                if (impersonating)
+                {
+                    force2D = false;
+                }
             }
         }
     }
